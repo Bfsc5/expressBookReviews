@@ -75,14 +75,15 @@ public_users.get('/books-async', async (req, res) => {
 
 //  Get book review
 public_users.get('/review/:isbn', function (req, res) {
-    const isbn = req.params.isbn;      // Get ISBN from URL
-    const book = books[isbn];          // Look up the book
+    const isbn = req.params.isbn;
 
-    if (book) {
-        return res.status(200).send(JSON.stringify(book.reviews, null, 2));
-    } else {
+    // Check if the book exists
+    if (!books[isbn]) {
         return res.status(404).json({ message: "Book not found" });
     }
+
+    // Return the reviews for this ISBN
+    return res.status(200).json(books[isbn].reviews);
 });
 
 module.exports.general = public_users;
