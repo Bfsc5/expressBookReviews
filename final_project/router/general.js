@@ -11,9 +11,9 @@ public_users.post("/register", (req,res) => {
 });
 
 // Get the book list available in the shop
-public_users.get('/',function (req, res) {
-  const book = require("./booksdb.js");
-  return res.status(300).json({message: "Yet to be implemented"});
+public_users.get('/books', function (req, res) {
+return res.status(200).send(JSON.stringify(books, null, 2));});
+
 
 });
 
